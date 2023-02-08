@@ -1,4 +1,5 @@
 import { Header, Summary } from '../../components'
+import { useTransactions } from '../../contexts/TransactionsContext'
 import { SearchForm } from './components'
 import {
   PriceHighlight,
@@ -7,6 +8,8 @@ import {
 } from './styles'
 
 export const Transactions = () => {
+  const { transactionList } = useTransactions()
+
   return (
     <div>
       <Header />
@@ -17,22 +20,18 @@ export const Transactions = () => {
 
         <TransactionsTable>
           <tbody>
-            <tr>
-              <td width='50%'>Desenvolvimento de site</td>
-              <td>
-                <PriceHighlight variant='income'>R$ 12.000,00</PriceHighlight>
-              </td>
-              <td>Venda</td>
-              <td>13/04/2022</td>
-            </tr>
-            <tr>
-              <td width='50%'>Hambúrguer</td>
-              <td>
-                <PriceHighlight variant='outcome'>- R$ 34,00</PriceHighlight>
-              </td>
-              <td>Comida</td>
-              <td>10/04/2022</td>
-            </tr>
+            {transactionList.map((transaction) => (
+              <tr key={transaction.id}>
+                <td width='50%'>{transaction.description}</td>
+                <td>
+                  <PriceHighlight variant={transaction.type}>
+                    R$ {transaction.price},00
+                  </PriceHighlight>
+                </td>
+                <td>{transaction.category}</td>
+                <td>{new Date(transaction.createdAt).toLocaleDateString()}</td>
+              </tr>
+            ))}
           </tbody>
         </TransactionsTable>
       </TransactionsContainer>
