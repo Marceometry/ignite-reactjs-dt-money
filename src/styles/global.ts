@@ -5,7 +5,6 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
   }
   
   :focus {
@@ -27,5 +26,10 @@ export const GlobalStyle = createGlobalStyle`
     border: 0;
     background-color: transparent;
     cursor: pointer;
+  }
+
+  button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 `

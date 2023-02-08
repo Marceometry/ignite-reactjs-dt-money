@@ -1,34 +1,41 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import { api } from '../../api'
 import {
+  NewTransactionData,
   Transaction,
   TransactionsContextData,
   TransactionsContextProviderProps,
 } from './types'
-
-const API_BASE_URL = 'http://localhost:3333'
 
 export const TransactionsContext = createContext({} as TransactionsContextData)
 
 export function TransactionsContextProvider({
   children,
 }: TransactionsContextProviderProps) {
-  const [isLoading, setIsLoading] = useState(false)
   const [transactionList, setTransactionList] = useState<Transaction[]>([])
 
-  async function loadTransactions() {
-    const response = await fetch(`${API_BASE_URL}/transactions`)
-    const data = await response.json()
+  async function fetchTransactions(query?: string) {
+    const config = { params: { _sort: 'createdAt', _order: 'desc', q: query } }
+    const { data } = await api.get('/transactions', config)
 
     setTransactionList(data)
   }
 
+  async function addTransaction(data: NewTransactionData) {
+    const response = await api.post('/transactions', {
+      ...data,
+      createdAt: new Date(),
+    })
+    setTransactionList((state) => [response.data, ...state])
+  }
+
   useEffect(() => {
-    loadTransactions()
+    fetchTransactions()
   }, [])
 
   return (
     <TransactionsContext.Provider
-      value={{ isLoading, setIsLoading, transactionList }}
+      value={{ transactionList, fetchTransactions, addTransaction }}
     >
       {children}
     </TransactionsContext.Provider>

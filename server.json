@@ -15,6 +15,46 @@
       "price": 25,
       "category": "Comida",
       "createdAt": "2023-02-06T13:40:12.205Z"
+    },
+    {
+      "description": "Zé Café",
+      "category": "Comida",
+      "price": 100,
+      "type": "outcome",
+      "id": 10,
+      "createdAt": "2023-02-08T23:07:28.264Z"
+    },
+    {
+      "description": "Zé Café",
+      "category": "Comida",
+      "price": 90,
+      "type": "outcome",
+      "id": 11,
+      "createdAt": "2023-02-08T23:09:03.582Z"
+    },
+    {
+      "description": "Zé Café",
+      "category": "Comida",
+      "price": 110,
+      "type": "outcome",
+      "createdAt": "2023-02-08T23:10:57.198Z",
+      "id": 12
+    },
+    {
+      "description": "Roupas Renner",
+      "category": "Roupas",
+      "price": 100,
+      "type": "outcome",
+      "createdAt": "2023-02-08T23:25:33.582Z",
+      "id": 13
+    },
+    {
+      "description": "Farmácia",
+      "category": "Farmácia",
+      "price": 14,
+      "type": "outcome",
+      "createdAt": "2023-02-08T23:26:37.946Z",
+      "id": 14
     }
   ]
 }

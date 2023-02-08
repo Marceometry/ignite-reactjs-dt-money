@@ -1,5 +1,12 @@
 import { ReactNode } from 'react'
 
+export interface NewTransactionData {
+  description: string
+  category: string
+  price: number
+  type: 'income' | 'outcome'
+}
+
 export interface Transaction {
   id: number
   description: string
@@ -10,9 +17,9 @@ export interface Transaction {
 }
 
 export type TransactionsContextData = {
-  isLoading: boolean
-  setIsLoading: (isLoading: boolean) => void
   transactionList: Transaction[]
+  fetchTransactions: (query?: string) => Promise<void>
+  addTransaction: (data: NewTransactionData) => Promise<void>
 }
 
 export type TransactionsContextProviderProps = {
