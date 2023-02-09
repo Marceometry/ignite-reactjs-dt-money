@@ -1,7 +1,7 @@
-import { useTransactions } from '../contexts'
+import { useTransactionList } from '../contexts'
 
 export function useSummary() {
-  const { transactionList } = useTransactions()
+  const transactionList = useTransactionList()
 
   const summary = transactionList.reduce(
     (acc, transaction) => {

@@ -1,5 +1,5 @@
 import { Header, Summary } from '../../components'
-import { useTransactions } from '../../contexts/TransactionsContext'
+import { useTransactionList } from '../../contexts/TransactionsContext'
 import { dateFormatter, priceFormatter } from '../../utils'
 import { SearchForm } from './components'
 import {
@@ -9,7 +9,7 @@ import {
 } from './styles'
 
 export const Transactions = () => {
-  const { transactionList } = useTransactions()
+  const transactionList = useTransactionList()
 
   return (
     <div>

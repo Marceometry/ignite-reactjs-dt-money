@@ -3,8 +3,7 @@ import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, Controller } from 'react-hook-form'
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react'
-import { api } from '../../api'
-import { useTransactions } from '../../contexts'
+import { useUpdateTransactions } from '../../contexts'
 import {
   CloseButton,
   Content,
@@ -23,7 +22,7 @@ const newTransactionFormSchema = z.object({
 type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>
 
 export const NewTransactionModal = () => {
-  const { addTransaction } = useTransactions()
+  const addTransaction = useUpdateTransactions()
   const {
     reset,
     control,
